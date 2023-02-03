@@ -48,10 +48,14 @@ if __name__ == "__main__":
 
     borwsers = ["chrom", "firefox", "ie"]
 
+    url = input("Enter Your URL: ")
+
     print("Select Your Browser:")
     print_list(borwsers)
 
     browser = borwsers[int(input()) - 1]
+
+    time_to_refresh_period = int(input("enter period time to refresh: "))
 
     try:
         web_driver =  webderive_gen.generate_driver(browser)
@@ -60,7 +64,7 @@ if __name__ == "__main__":
         exit(1)
 
     try:
-        refresher = WebRefresher(web_driver, "https://github.com/EmadDeve20",  1)
+        refresher = WebRefresher(web_driver, url,  time_to_refresh_period)
     except KeyboardInterrupt:
         web_driver.close()
 

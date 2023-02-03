@@ -1,5 +1,6 @@
 from typing import List
 from selenium import webdriver
+import time
 
 class WebdriverGenerator:
 
@@ -20,6 +21,21 @@ class WebdriverGenerator:
             raise Exception("Browser Not Valid!")
         
         return web_driver
+
+class WebRefresher:
+    
+    def __init__(self, driver: webdriver, url: str, period: int):
+        self.driver = driver
+        self.driver.get(url)
+        self.period = period
+        self.run()
+
+    def run(self):
+        while True:
+            self.driver.refresh()
+            time.sleep(self.period)
+
+
 
 def print_list(array_list: List[str]):
 
@@ -43,5 +59,8 @@ if __name__ == "__main__":
         print(e)
         exit(1)
 
-    web_driver.close()
+    try:
+        refresher = WebRefresher(web_driver, "https://github.com/EmadDeve20",  1)
+    except KeyboardInterrupt:
+        web_driver.close()
 

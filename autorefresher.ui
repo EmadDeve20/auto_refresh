@@ -31,7 +31,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="urlLineEdit"/>
       </item>
      </layout>
     </item>
@@ -51,7 +51,23 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="browsersCombo">
+        <item>
+         <property name="text">
+          <string>Google Chrome</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>FireFox</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Internet Explorer</string>
+         </property>
+        </item>
+       </widget>
       </item>
      </layout>
     </item>
@@ -71,7 +87,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2"/>
+       <widget class="QLineEdit" name="periodEdt"/>
       </item>
      </layout>
     </item>

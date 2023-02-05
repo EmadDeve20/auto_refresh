@@ -16,10 +16,14 @@ class AutoRefresher(QtWidgets.QMainWindow):
         url = self.urlLineEdit.text()
         self.web_driver =  self.browsers[self.browsersCombo.currentIndex()]()
         period = int(self.periodEdt.text())
+        self.web_driver.get(url)
+        
+        run_time = time.time()
 
         while True:
-            self.web_driver.get(url)
-            time.sleep(period)
+            if (self.curentTime - run_time) >= period:
+                self.web_driver.refresh()
+                run_time = self.curentTime
 
     @property
     def browsers(self):
@@ -28,6 +32,10 @@ class AutoRefresher(QtWidgets.QMainWindow):
             webdriver.Firefox,
             webdriver.Ie,
         ]
+    
+    @property
+    def curentTime(self):
+        return time.time()
     
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
         if self.web_driver != None:

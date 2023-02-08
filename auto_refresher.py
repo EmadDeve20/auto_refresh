@@ -5,6 +5,7 @@ from selenium import webdriver
 import sys
 import time
 import traceback
+
 class WorkerSignals(QObject):
     '''
     Defines the signals available from a running worker thread.
@@ -92,7 +93,7 @@ class AutoRefresher(QtWidgets.QMainWindow):
         
         run_time = time.time()
 
-        while True:
+        while self.web_driver.window_handles:
             if (self.curentTime - run_time) >= period:
                 self.web_driver.refresh()
                 run_time = self.curentTime

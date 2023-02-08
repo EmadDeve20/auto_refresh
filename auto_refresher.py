@@ -73,8 +73,15 @@ class AutoRefresher(QtWidgets.QMainWindow):
     
     def create_thread_autorefresher(self):
         
-        worker = Worker(self.run)
-        self.qthread_pool.start(worker)
+        if (self.startBtn.text() == "Start"):
+            worker = Worker(self.run)
+            self.qthread_pool.start(worker)
+            self.startBtn.setText("Stop")
+        
+        elif (self.startBtn.text() == "Stop"):
+            if (self.web_driver != None):
+                self.web_driver.close()
+            self.startBtn.setText("Start")
 
     def run(self):
 

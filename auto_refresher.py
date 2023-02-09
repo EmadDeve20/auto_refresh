@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot, QRunnable, QThreadPool
+from PyQt5.QtGui import QIntValidator
 from selenium import webdriver
 import sys
 import time
@@ -68,9 +69,12 @@ class AutoRefresher(QtWidgets.QMainWindow):
     def __init__(self):
         super(AutoRefresher, self).__init__()
         uic.loadUi("./autorefresher.ui", self)
+        
         self.web_driver = None
+        self.periodEdt.setValidator(QIntValidator())
         self.startBtn.clicked.connect(self.create_thread_autorefresher)
         self.qthread_pool = QThreadPool()
+
     
     def create_thread_autorefresher(self):
         

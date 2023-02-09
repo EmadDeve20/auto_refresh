@@ -110,10 +110,6 @@ class AutoRefresher(QtWidgets.QMainWindow):
     def curentTime(self):
         return time.time()
     
-    def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
-        if self.web_driver != None:
-            self.web_driver.close()
-        return super().closeEvent(a0)
 
 
 if __name__ == "__main__":

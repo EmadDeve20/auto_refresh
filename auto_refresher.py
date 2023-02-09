@@ -101,7 +101,13 @@ class AutoRefresher(QtWidgets.QMainWindow):
         self.infoLabel.setText("")
 
         url = self.urlLineEdit.text()
-        self.web_driver =  self.browsers[self.browsersCombo.currentIndex()]()
+        
+        try:
+            self.web_driver =  self.browsers[self.browsersCombo.currentIndex()]()
+        except:
+            self.infoLabel.setText("Browser Not Available!")
+            return
+
         period = int(self.periodEdt.text())
         
         try:

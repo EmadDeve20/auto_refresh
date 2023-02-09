@@ -4,6 +4,7 @@ from selenium import webdriver
 import sys
 import time
 import traceback
+import selenium
 
 class WorkerSignals(QObject):
     '''
@@ -93,11 +94,19 @@ class AutoRefresher(QtWidgets.QMainWindow):
 
     def run(self):
 
+        self.infoLabel.setText("")
+
         url = self.urlLineEdit.text()
         self.web_driver =  self.browsers[self.browsersCombo.currentIndex()]()
         period = int(self.periodEdt.text())
-        self.web_driver.get(url)
         
+        try:
+            self.web_driver.get(url)
+        except selenium.common.exceptions.InvalidArgumentException:
+            self.infoLabel.setText("Invalid Url!")
+            self.web_driver.close()
+            return
+
         run_time = time.time()
 
         while self.web_driver.window_handles:

@@ -26,7 +26,13 @@ class WebRefresher:
     
     def __init__(self, driver: webdriver, url: str, period: int):
         self.driver = driver
-        self.driver.get(url)
+        
+        try:
+            self.driver.get(url)
+        except:
+            print("Url not Valid!")
+            exit(1)
+        
         self.period = period
         self.run()
 

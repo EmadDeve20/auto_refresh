@@ -53,7 +53,15 @@ if __name__ == "__main__":
     print("Select Your Browser:")
     print_list(borwsers)
 
-    browser = borwsers[int(input()) - 1]
+    browser = int(input())-1
+
+    if (browser > 3 or browser < 0):
+        print("Browser Select Fault!")
+        exit(1)
+    else:
+        browser = borwsers[browser]
+
+
 
     time_to_refresh_period = int(input("enter period time to refresh: "))
 

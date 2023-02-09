@@ -1,5 +1,4 @@
 from PyQt5 import QtWidgets, uic
-from PyQt5 import QtGui
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot, QRunnable, QThreadPool
 from selenium import webdriver
 import sys
